@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './weather-detail.html',
   styleUrl: './weather-detail.css',
 })
-export class WeatherDetail {
+export class WeatherDetailComponent {
 
 }
