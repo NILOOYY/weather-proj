@@ -1,1 +1,132 @@
-<p>trends works!</p>
+<div class="trends-page">
+  <div class="container py-5">
+    <!-- Header -->
+    <div class="page-header text-center mb-5">
+      <div class="trends-icon mb-3">📊</div>
+      <h1 class="display-4 fw-bold mb-3">Global Weather Trends</h1>
+      <p class="lead text-muted">Comprehensive analytics and insights from weather stations worldwide</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 text-muted">Analyzing weather data...</p>
+    </div>
+
+    <!-- Trends Data -->
+    <div *ngIf="!loading && trends" class="trends-content">
+      <!-- Overview Cards -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-3 col-sm-6">
+          <div class="stat-card card border-0 shadow-lg h-100">
+            <div class="card-body text-center p-4">
+              <div class="stat-icon mb-3">🌍</div>
+              <div class="stat-value display-5 fw-bold text-primary">{{ trends.total_stations }}</div>
+              <div class="stat-label text-muted">Weather Stations</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="stat-card card border-0 shadow-lg h-100">
+            <div class="card-body text-center p-4">
+              <div class="stat-icon mb-3">📈</div>
+              <div class="stat-value display-5 fw-bold text-success">{{ trends.total_readings }}</div>
+              <div class="stat-label text-muted">Total Readings</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="stat-card card border-0 shadow-lg h-100">
+            <div class="card-body text-center p-4">
+              <div class="stat-icon mb-3">🌡️</div>
+              <div class="stat-value display-5 fw-bold text-danger">{{ trends.avg_temp }}°C</div>
+              <div class="stat-label text-muted">Avg Temperature</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="stat-card card border-0 shadow-lg h-100">
+            <div class="card-body text-center p-4">
+              <div class="stat-icon mb-3">💨</div>
+              <div class="stat-value display-5 fw-bold text-info">{{ trends.avg_wind_kmh }}</div>
+              <div class="stat-label text-muted">Avg Wind (km/h)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Statistics -->
+      <div class="row g-4">
+        <!-- Temperature Card -->
+        <div class="col-lg-6">
+          <div class="detail-card card border-0 shadow-lg h-100">
+            <div class="card-header bg-gradient-danger text-white">
+              <h5 class="mb-0"><i class="bi bi-thermometer-half"></i> Temperature Analysis</h5>
+            </div>
+            <div class="card-body p-4">
+              <div class="stat-row mb-3">
+                <span class="stat-label-left">Average Temperature</span>
+                <span class="stat-value-right fw-bold text-danger">{{ trends.avg_temp }}°C</span>
+              </div>
+              <div class="stat-row mb-3">
+                <span class="stat-label-left">Minimum Temperature</span>
+                <span class="stat-value-right fw-bold text-info">{{ trends.min_temp }}°C</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label-left">Maximum Temperature</span>
+                <span class="stat-value-right fw-bold text-warning">{{ trends.max_temp }}°C</span>
+              </div>
+              <div class="progress mt-4" style="height: 25px;">
+                <div class="progress-bar bg-info" style="width: 33.33%">{{ trends.min_temp }}°C</div>
+                <div class="progress-bar bg-danger" style="width: 33.33%">{{ trends.avg_temp }}°C</div>
+                <div class="progress-bar bg-warning" style="width: 33.33%">{{ trends.max_temp }}°C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wind & Humidity Card -->
+        <div class="col-lg-6">
+          <div class="detail-card card border-0 shadow-lg h-100">
+            <div class="card-header bg-gradient-info text-white">
+              <h5 class="mb-0"><i class="bi bi-wind"></i> Wind & Humidity</h5>
+            </div>
+            <div class="card-body p-4">
+              <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="stat-label-left">💨 Average Wind Speed</span>
+                  <span class="stat-value-right fw-bold text-primary">{{ trends.avg_wind_kmh }} km/h</span>
+                </div>
+                <div class="progress" style="height: 20px;">
+                  <div class="progress-bar bg-primary" [style.width.%]="(trends.avg_wind_kmh / 100) * 100">
+                    {{ trends.avg_wind_kmh }} km/h
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="stat-label-left">💧 Average Humidity</span>
+                  <span class="stat-value-right fw-bold text-success">{{ trends.avg_humidity }}%</span>
+                </div>
+                <div class="progress" style="height: 20px;">
+                  <div class="progress-bar bg-success" [style.width.%]="trends.avg_humidity">
+                    {{ trends.avg_humidity }}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && !trends" class="empty-state text-center py-5">
+      <div class="empty-icon mb-3">📊</div>
+      <h4>No Data Available</h4>
+      <p class="text-muted">No trend data available at this time. Please check back later.</p>
+    </div>
+  </div>
+</div>

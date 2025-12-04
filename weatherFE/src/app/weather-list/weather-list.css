@@ -1,0 +1,125 @@
+.weather-list-page {
+  background: linear-gradient(to bottom, #e0f2fe 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.page-header .weather-icon {
+  font-size: 5rem;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.weather-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.card-header {
+  padding: 1.25rem;
+  font-weight: 600;
+}
+
+.bg-hot {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.bg-warm {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.bg-cool {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.bg-cold {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.temp-display {
+  padding: 1rem 0;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.temp-value {
+  color: #1f2937;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.temp-unit {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.weather-details {
+  margin-top: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #6b7280;
+  margin-right: 0.5rem;
+}
+
+.detail-value {
+  color: #1f2937;
+  margin-left: auto;
+  font-weight: 500;
+}
+
+.btn-view-details {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.btn-view-details:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.empty-state .empty-icon {
+  font-size: 5rem;
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .temp-value {
+    font-size: 3rem;
+  }
+}

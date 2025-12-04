@@ -1,1 +1,93 @@
-<p>register works!</p>
+<div class="register-page">
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-5">
+        <div class="register-card card border-0 shadow-lg">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <div class="register-icon mb-3">📝</div>
+              <h2 class="fw-bold mb-2">Create Account</h2>
+              <p class="text-muted">Join our weather monitoring community</p>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+              <i class="bi bi-exclamation-triangle-fill"></i> {{ errorMessage }}
+            </div>
+
+            <!-- SUCCESS MESSAGE -->
+            <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+              <i class="bi bi-check-circle-fill"></i> {{ successMessage }}
+            </div>
+
+            <!-- Register Form -->
+            <form>
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-person"></i> Username
+                </label>
+                <input
+                  class="form-control form-control-lg"
+                  [(ngModel)]="username"
+                  name="username"
+                  type="text"
+                  placeholder="Choose a username"
+                  required
+                />
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-lock"></i> Password
+                </label>
+                <input
+                  class="form-control form-control-lg"
+                  [(ngModel)]="password"
+                  name="password"
+                  type="password"
+                  placeholder="Create a strong password"
+                  required
+                />
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-shield-check"></i> Account Type
+                </label>
+                <select class="form-select form-select-lg" [(ngModel)]="admin" name="admin">
+                  <option [ngValue]="false">👤 User Account</option>
+                  <option [ngValue]="true">👑 Admin Account</option>
+                </select>
+                <small class="text-muted">
+                  <i class="bi bi-info-circle"></i> 
+                  Admins can manage weather stations and data
+                </small>
+              </div>
+
+              <button 
+                class="btn btn-primary btn-lg w-100 mb-3" 
+                (click)="register()" 
+                type="button"
+                [disabled]="!username || !password"
+              >
+                <i class="bi bi-person-plus"></i> Create Account
+              </button>
+
+              <div class="text-center">
+                <p class="text-muted mb-0">
+                  Already have an account? 
+                  <a routerLink="/login" class="text-primary fw-semibold text-decoration-none">
+                    Sign in here
+                  </a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

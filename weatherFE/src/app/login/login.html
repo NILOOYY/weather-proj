@@ -1,1 +1,72 @@
-<p>login works!</p>
+<div class="login-page">
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-5">
+        <div class="login-card card border-0 shadow-lg">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <div class="login-icon mb-3">🔐</div>
+              <h2 class="fw-bold mb-2">Welcome Back</h2>
+              <p class="text-muted">Sign in to access your weather dashboard</p>
+            </div>
+
+            <!-- Error message -->
+            <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill"></i> {{ errorMessage }}
+            </div>
+
+            <!-- Login Form -->
+            <form>
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-person"></i> Username
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control form-control-lg"
+                  placeholder="Enter your username"
+                  [(ngModel)]="username"
+                  required
+                />
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-lock"></i> Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control form-control-lg"
+                  placeholder="Enter your password"
+                  [(ngModel)]="password"
+                  required
+                />
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-primary btn-lg w-100 mb-3"
+                (click)="login()"
+                [disabled]="!username || !password"
+              >
+                <i class="bi bi-box-arrow-in-right"></i> Sign In
+              </button>
+
+              <div class="text-center">
+                <p class="text-muted mb-0">
+                  Don't have an account? 
+                  <a routerLink="/register" class="text-primary fw-semibold text-decoration-none">
+                    Register here
+                  </a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

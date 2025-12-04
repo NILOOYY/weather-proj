@@ -1,1 +1,91 @@
-<p>weather-list works!</p>
+<div class="weather-list-page">
+  <div class="container py-5">
+    <!-- Header -->
+    <div class="page-header text-center mb-5">
+      <div class="weather-icon mb-3">🌍</div>
+      <h1 class="display-4 fw-bold mb-3">Weather Stations</h1>
+      <p class="lead text-muted">Browse real-time weather data from stations around the world</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 text-muted">Loading weather stations...</p>
+    </div>
+
+    <!-- Weather Cards Grid -->
+    <div class="row g-4" *ngIf="!loading && weatherList.length > 0">
+      <div class="col-lg-4 col-md-6" *ngFor="let w of weatherList">
+        <div class="weather-card card border-0 shadow-lg h-100">
+          <div class="card-header text-white" 
+               [ngClass]="{
+                 'bg-hot': w.avg_temp_c > 30,
+                 'bg-warm': w.avg_temp_c > 20 && w.avg_temp_c <= 30,
+                 'bg-cool': w.avg_temp_c > 10 && w.avg_temp_c <= 20,
+                 'bg-cold': w.avg_temp_c <= 10
+               }">
+            <h5 class="mb-0">
+              <i class="bi bi-geo-alt-fill"></i> {{ w.city }}
+            </h5>
+            <small *ngIf="w.country">{{ w.country }}</small>
+          </div>
+          <div class="card-body">
+            <div class="temp-display text-center mb-3">
+              <div class="temp-value display-3 fw-bold">{{ w.avg_temp_c }}°</div>
+              <div class="temp-unit text-muted">Celsius</div>
+            </div>
+
+            <div class="weather-details">
+              <div class="detail-item mb-2">
+                <span class="detail-icon">🌤️</span>
+                <span class="detail-label">Condition:</span>
+                <span class="detail-value">{{ w.overall_condition }}</span>
+              </div>
+              <div class="detail-item mb-2" *ngIf="w.max_wind_kmh">
+                <span class="detail-icon">💨</span>
+                <span class="detail-label">Wind:</span>
+                <span class="detail-value">{{ w.max_wind_kmh }} km/h</span>
+              </div>
+              <div class="detail-item mb-2" *ngIf="w.air_quality_index">
+                <span class="detail-icon">🌫️</span>
+                <span class="detail-label">AQI:</span>
+                <span class="detail-value">{{ w.air_quality_index }}</span>
+              </div>
+              <div class="detail-item" *ngIf="w.station_name">
+                <span class="detail-icon">📡</span>
+                <span class="detail-label">Station:</span>
+                <span class="detail-value">{{ w.station_name }}</span>
+              </div>
+            </div>
+
+            <!-- Alerts Badge -->
+            <div class="mt-3" *ngIf="w.alerts && w.alerts.length > 0">
+              <span class="badge bg-danger me-1" *ngFor="let alert of w.alerts">
+                ⚠️ {{ alert }}
+              </span>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0 pt-0">
+            <a class="btn btn-primary w-100 btn-view-details" [routerLink]="['/weather', w._id]">
+              <i class="bi bi-eye"></i> View Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && weatherList.length === 0" class="empty-state text-center py-5">
+      <div class="empty-icon mb-3">🌍</div>
+      <h4>No Weather Stations Found</h4>
+      <p class="text-muted">No weather data available at this time.</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+ 

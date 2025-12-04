@@ -1,8 +1,54 @@
-<nav>
-  <a routerLink="/home">Home</a>
-  <a routerLink="/weather">Weather</a>
-  <a routerLink="/alerts">Alerts</a>
-  <a routerLink="/trends">Trends</a>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+
+  <a class="navbar-brand" routerLink="/">WeatherApp</a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navMenu" class="collapse navbar-collapse">
+    <ul class="navbar-nav me-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/weather">Weather</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/alerts">Alerts</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/trends">Trends</a>
+      </li>
+
+      <!-- Only show when NOT logged in -->
+      <li class="nav-item" *ngIf="!auth.isLoggedIn()">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+
+      <li class="nav-item" *ngIf="!auth.isLoggedIn()">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
+
+      <!-- Only show when logged in -->
+      <li class="nav-item" *ngIf="auth.isLoggedIn()">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+
+      <!-- Only show for ADMINS -->
+      <li class="nav-item" *ngIf="auth.isAdmin()">
+        <a class="nav-link text-warning" routerLink="/admin">Admin Panel</a>
+      </li>
+
+    </ul>
+  </div>
+
 </nav>

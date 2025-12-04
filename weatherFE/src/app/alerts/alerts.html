@@ -1,1 +1,126 @@
-<p>alerts works!</p>
+<div class="alerts-page">
+  <div class="container py-5">
+    <!-- Header -->
+    <div class="page-header text-center mb-5">
+      <div class="alert-icon mb-3">⚠️</div>
+      <h1 class="display-4 fw-bold mb-3">Weather Alerts</h1>
+      <p class="lead text-muted">Monitor active weather warnings and alerts worldwide</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-card card border-0 shadow-lg mb-4">
+      <div class="card-body p-4">
+        <h5 class="mb-4"><i class="bi bi-funnel"></i> Filter Alerts</h5>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input 
+                type="text" 
+                class="form-control" 
+                id="regionInput"
+                placeholder="Region" 
+                [(ngModel)]="filterRegion"
+              />
+              <label for="regionInput">🌍 Region</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input 
+                type="text" 
+                class="form-control" 
+                id="stateInput"
+                placeholder="State" 
+                [(ngModel)]="filterState"
+              />
+              <label for="stateInput">📍 State</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input 
+                type="text" 
+                class="form-control" 
+                id="cityInput"
+                placeholder="City" 
+                [(ngModel)]="filterCity"
+              />
+              <label for="cityInput">🏙️ City</label>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex gap-2">
+            <button class="btn btn-primary flex-fill" (click)="applyFilters()">
+              <i class="bi bi-search"></i> Apply
+            </button>
+            <button class="btn btn-outline-secondary flex-fill" (click)="clearFilters()">
+              <i class="bi bi-x-circle"></i> Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 text-muted">Loading alerts...</p>
+    </div>
+
+    <!-- Summary -->
+    <div *ngIf="!loading && Object.keys(summary).length > 0" class="summary-section mb-4">
+      <h5 class="mb-3">📊 Alert Summary</h5>
+      <div class="row g-3">
+        <div class="col-md-4" *ngFor="let key of Object.keys(summary)">
+          <div class="summary-card card border-0 shadow-sm h-100">
+            <div class="card-body text-center">
+              <div class="alert-count display-4 fw-bold text-danger">{{ summary[key] }}</div>
+              <div class="alert-type text-muted">{{ key }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts List -->
+    <div *ngIf="!loading && alerts.length > 0" class="alerts-list">
+      <h5 class="mb-3">🚨 Active Alerts ({{ alerts.length }})</h5>
+      <div class="row g-4">
+        <div class="col-md-6" *ngFor="let alert of alerts">
+          <div class="alert-card card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-3">
+                <i class="bi bi-broadcast text-danger"></i> {{ alert.station_name }}
+              </h5>
+              <p class="text-muted mb-3">
+                <i class="bi bi-geo-alt"></i> 
+                {{ alert.city }}<span *ngIf="alert.state">, {{ alert.state }}</span><span *ngIf="alert.region">, {{ alert.region }}</span>, {{ alert.country }}
+              </p>
+              <div class="alert-badges">
+                <span 
+                  class="badge rounded-pill me-2 mb-2" 
+                  [ngClass]="{
+                    'bg-danger': alertType.includes('Heatwave') || alertType.includes('Storm'),
+                    'bg-info': alertType.includes('Frost'),
+                    'bg-warning text-dark': !alertType.includes('Heatwave') && !alertType.includes('Storm') && !alertType.includes('Frost')
+                  }"
+                  *ngFor="let alertType of alert.alerts"
+                >
+                  {{ alertType }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && alerts.length === 0" class="empty-state text-center py-5">
+      <div class="empty-icon mb-3">✅</div>
+      <h4>No Active Alerts</h4>
+      <p class="text-muted">No weather alerts found for the selected filters.</p>
+    </div>
+  </div>
+</div>
