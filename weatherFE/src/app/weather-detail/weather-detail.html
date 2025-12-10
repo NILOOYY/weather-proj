@@ -129,7 +129,7 @@
             <div class="comment-item card mb-3" *ngFor="let c of comments">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
-                  <div>
+                  <div class="flex-grow-1">
                     <h6 class="mb-1">
                       <i class="bi bi-person-circle text-primary"></i> {{ c.username }}
                     </h6>
@@ -138,8 +138,19 @@
                       <i class="bi bi-clock"></i> {{ c.created_at | date:'short' }}
                     </small>
                   </div>
-                  <div *ngIf="c.rating" class="rating-badge">
-                    <span class="badge bg-warning">⭐ {{ c.rating }}</span>
+                  <div class="d-flex align-items-center gap-2">
+                    <div *ngIf="c.rating" class="rating-badge">
+                      <span class="badge bg-warning">⭐ {{ c.rating }}</span>
+                    </div>
+                    <!-- Comment Actions (only show if user is logged in) -->
+                    <div class="comment-actions" *ngIf="authService.isLoggedIn()">
+                      <button class="btn btn-sm btn-outline-primary" (click)="editComment(c)" title="Edit Comment">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button class="btn btn-sm btn-outline-danger" (click)="deleteComment(c._id)" title="Delete Comment">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

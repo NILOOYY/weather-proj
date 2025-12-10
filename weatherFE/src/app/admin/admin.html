@@ -1,0 +1,179 @@
+<div class="admin-page">
+  <div class="container py-5">
+    <!-- Header -->
+    <div class="page-header mb-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="display-5 fw-bold">👑 Admin Dashboard</h1>
+          <p class="text-muted">Manage weather stations and data</p>
+        </div>
+        <button class="btn btn-success btn-lg" (click)="showAddStationForm()">
+          <i class="bi bi-plus-circle"></i> Add New Station
+        </button>
+      </div>
+    </div>
+
+    <!-- Add/Edit Form -->
+    <div *ngIf="showAddForm" class="form-card card border-0 shadow-lg mb-4">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+          <i class="bi bi-{{ editingStation ? 'pencil' : 'plus' }}-square"></i>
+          {{ editingStation ? 'Edit Station' : 'Add New Station' }}
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <form>
+          <div class="row g-3">
+            <!-- Station Name & City -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Station Name *</label>
+              <input type="text" class="form-control" [(ngModel)]="stationForm.station_name" name="station_name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">City *</label>
+              <input type="text" class="form-control" [(ngModel)]="stationForm.city" name="city" required>
+            </div>
+
+            <!-- Location Details -->
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">State</label>
+              <input type="text" class="form-control" [(ngModel)]="stationForm.state" name="state">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Region</label>
+              <input type="text" class="form-control" [(ngModel)]="stationForm.region" name="region">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Country *</label>
+              <input type="text" class="form-control" [(ngModel)]="stationForm.country" name="country" required>
+            </div>
+
+            <!-- Coordinates -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Latitude</label>
+              <input type="number" step="any" class="form-control" [(ngModel)]="stationForm.latitude" name="latitude">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Longitude</label>
+              <input type="number" step="any" class="form-control" [(ngModel)]="stationForm.longitude" name="longitude">
+            </div>
+
+            <!-- Weather Data -->
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Temperature (°C)</label>
+              <input type="number" step="any" class="form-control" [(ngModel)]="stationForm.avg_temp_c" name="avg_temp_c">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Wind Speed (km/h)</label>
+              <input type="number" step="any" class="form-control" [(ngModel)]="stationForm.max_wind_kmh" name="max_wind_kmh">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Air Quality Index</label>
+              <input type="number" class="form-control" [(ngModel)]="stationForm.air_quality_index" name="air_quality_index">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Condition</label>
+              <select class="form-select" [(ngModel)]="stationForm.overall_condition" name="overall_condition">
+                <option value="">Select condition</option>
+                <option value="Sunny">Sunny</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Partly Cloudy">Partly Cloudy</option>
+                <option value="Rainy">Rainy</option>
+                <option value="Stormy">Stormy</option>
+                <option value="Snowy">Snowy</option>
+                <option value="Foggy">Foggy</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Form Buttons -->
+          <div class="mt-4 d-flex gap-2">
+            <button type="button" class="btn btn-primary" (click)="submitForm()">
+              <i class="bi bi-{{ editingStation ? 'check' : 'plus' }}-circle"></i>
+              {{ editingStation ? 'Update Station' : 'Add Station' }}
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="cancelForm()">
+              <i class="bi bi-x-circle"></i> Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3 text-muted">Loading weather stations...</p>
+    </div>
+
+    <!-- Stations List -->
+    <div *ngIf="!loading" class="stations-grid">
+      <h5 class="mb-3">Weather Stations ({{ weatherList.length }})</h5>
+      
+      <div class="row g-4" *ngIf="weatherList.length > 0">
+        <div class="col-lg-6" *ngFor="let station of weatherList">
+          <div class="station-card card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                  <h5 class="card-title mb-1">
+                    <i class="bi bi-broadcast text-primary"></i> {{ station.station_name }}
+                  </h5>
+                  <p class="text-muted mb-0">
+                    <i class="bi bi-geo-alt"></i> {{ station.city }}, {{ station.country }}
+                  </p>
+                </div>
+                <div class="temp-badge">
+                  <span class="badge bg-info fs-6">{{ station.avg_temp_c }}°C</span>
+                </div>
+              </div>
+
+              <div class="station-details mb-3">
+                <div class="row g-2 text-sm">
+                  <div class="col-6" *ngIf="station.region">
+                    <strong>Region:</strong> {{ station.region }}
+                  </div>
+                  <div class="col-6" *ngIf="station.state">
+                    <strong>State:</strong> {{ station.state }}
+                  </div>
+                  <div class="col-6" *ngIf="station.max_wind_kmh">
+                    <strong>Wind:</strong> {{ station.max_wind_kmh }} km/h
+                  </div>
+                  <div class="col-6" *ngIf="station.air_quality_index">
+                    <strong>AQI:</strong> {{ station.air_quality_index }}
+                  </div>
+                  <div class="col-12" *ngIf="station.overall_condition">
+                    <strong>Condition:</strong> {{ station.overall_condition }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="d-flex gap-2">
+                <a [routerLink]="['/weather', station._id]" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-eye"></i> View
+                </a>
+                <button class="btn btn-outline-warning btn-sm" (click)="editStation(station)">
+                  <i class="bi bi-pencil"></i> Edit
+                </button>
+                <button class="btn btn-outline-danger btn-sm" (click)="deleteStation(station)">
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="weatherList.length === 0" class="empty-state text-center py-5">
+        <div class="empty-icon mb-3">🌍</div>
+        <h4>No Weather Stations</h4>
+        <p class="text-muted">Start by adding your first weather station.</p>
+        <button class="btn btn-primary" (click)="showAddStationForm()">
+          <i class="bi bi-plus-circle"></i> Add First Station
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

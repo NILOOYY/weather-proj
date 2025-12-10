@@ -1,21 +1,57 @@
 <div class="home-hero">
   <div class="container py-5">
+    <!-- Hero Section -->
     <div class="text-center mb-5 animate-fade-in">
       <h1 class="display-3 fw-bold mb-3">
-        <span class="gradient-text">🌤️ Weather Monitoring</span>
+        <span class="gradient-text">🌤️ WeatherScope Pro</span>
       </h1>
-      <p class="lead fs-4 text-muted">Track weather conditions, view alerts, and analyze trends from stations worldwide</p>
+      <p class="lead fs-4 text-light mb-4">
+        Advanced Weather Monitoring & Analytics Platform
+      </p>
+      <p class="fs-5 text-light opacity-75 mb-4">
+        Monitor real-time weather conditions from stations worldwide with intelligent alerts, 
+        comprehensive analytics, and community-driven insights.
+      </p>
+      <div class="hero-stats row g-3 justify-content-center mb-4">
+        <div class="col-auto">
+          <div class="stat-pill">
+            <span class="stat-number">150+</span>
+            <span class="stat-label">Global Stations</span>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="stat-pill">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Live Monitoring</span>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="stat-pill">
+            <span class="stat-number">99.9%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- Main Features -->
     <div class="row g-4 mb-5">
       <div class="col-md-4">
         <div class="feature-card card h-100 border-0 shadow-lg hover-lift">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">🌍</div>
-            <h3 class="h4 mb-3">Weather Stations</h3>
-            <p class="text-muted mb-4">Browse weather data from stations around the world with real-time updates</p>
+            <h3 class="h4 mb-3">Global Weather Network</h3>
+            <p class="text-muted mb-4">
+              Access comprehensive weather data from meteorological stations across continents. 
+              Real-time temperature, humidity, wind speed, and atmospheric pressure readings.
+            </p>
+            <div class="feature-highlights mb-4">
+              <small class="text-success">✓ Real-time updates</small><br>
+              <small class="text-success">✓ Multi-location tracking</small><br>
+              <small class="text-success">✓ Historical comparisons</small>
+            </div>
             <a routerLink="/weather" class="btn btn-primary btn-lg px-4">
-              View Stations <i class="ms-2">→</i>
+              Explore Stations <i class="ms-2">→</i>
             </a>
           </div>
         </div>
@@ -25,8 +61,16 @@
         <div class="feature-card card h-100 border-0 shadow-lg hover-lift">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">⚠️</div>
-            <h3 class="h4 mb-3">Weather Alerts</h3>
-            <p class="text-muted mb-4">Check active weather warnings including heatwaves, storms, and frost alerts</p>
+            <h3 class="h4 mb-3">Smart Alert System</h3>
+            <p class="text-muted mb-4">
+              Intelligent weather monitoring with automated alerts for extreme conditions. 
+              Get notified about heatwaves, storms, frost warnings, and severe weather events.
+            </p>
+            <div class="feature-highlights mb-4">
+              <small class="text-warning">⚡ Instant notifications</small><br>
+              <small class="text-warning">🌡️ Temperature thresholds</small><br>
+              <small class="text-warning">🌪️ Storm tracking</small>
+            </div>
             <a routerLink="/alerts" class="btn btn-warning btn-lg px-4">
               View Alerts <i class="ms-2">→</i>
             </a>
@@ -38,47 +82,156 @@
         <div class="feature-card card h-100 border-0 shadow-lg hover-lift">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">📊</div>
-            <h3 class="h4 mb-3">Trends & Analytics</h3>
-            <p class="text-muted mb-4">Analyze global weather patterns and statistics with detailed insights</p>
+            <h3 class="h4 mb-3">Advanced Analytics</h3>
+            <p class="text-muted mb-4">
+              Powerful data visualization and trend analysis tools. Discover patterns, 
+              seasonal variations, and climate insights with interactive charts and reports.
+            </p>
+            <div class="feature-highlights mb-4">
+              <small class="text-info">📈 Trend analysis</small><br>
+              <small class="text-info">🎯 Pattern recognition</small><br>
+              <small class="text-info">📋 Custom reports</small>
+            </div>
             <a routerLink="/trends" class="btn btn-info btn-lg px-4">
-              View Trends <i class="ms-2">→</i>
+              Analyze Data <i class="ms-2">→</i>
             </a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Technology Stack -->
+    <div class="tech-section mb-5">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h3 class="fw-bold mb-3">🚀 Built with Modern Technology</h3>
+          <p class="text-light mb-4">
+            Our platform leverages cutting-edge technologies to deliver fast, reliable, 
+            and scalable weather monitoring solutions for professionals and enthusiasts alike.
+          </p>
+          <div class="tech-stack">
+            <div class="tech-item">
+              <span class="tech-icon">⚡</span>
+              <div>
+                <strong>Angular 20</strong>
+                <small class="d-block text-muted">Modern reactive frontend</small>
+              </div>
+            </div>
+            <div class="tech-item">
+              <span class="tech-icon">🐍</span>
+              <div>
+                <strong>Flask API</strong>
+                <small class="d-block text-muted">Robust backend services</small>
+              </div>
+            </div>
+            <div class="tech-item">
+              <span class="tech-icon">🗄️</span>
+              <div>
+                <strong>MongoDB</strong>
+                <small class="d-block text-muted">Scalable data storage</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="tech-visual">
+            <div class="floating-elements">
+              <div class="floating-element">☁️</div>
+              <div class="floating-element">🌡️</div>
+              <div class="floating-element">💨</div>
+              <div class="floating-element">🌧️</div>
+              <div class="floating-element">❄️</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform Features Grid -->
     <div class="features-grid mt-5 pt-5">
-      <h4 class="text-center mb-4 fs-3 fw-bold">Platform Features</h4>
-      <div class="row g-4">
+      <h4 class="text-center mb-4 fs-3 fw-bold">Comprehensive Weather Intelligence</h4>
+      <div class="row g-4 mb-5">
         <div class="col-md-3 col-sm-6">
           <div class="feature-item text-center p-3">
             <div class="feature-badge mb-2">📍</div>
             <h5 class="mb-2">Live Updates</h5>
-            <p class="text-muted small">Live weather from global stations</p>
+            <p class="text-muted small">Real-time weather from global stations with minute-by-minute accuracy</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="feature-item text-center p-3">
             <div class="feature-badge mb-2">💬</div>
-            <h5 class="mb-2">User Comments</h5>
-            <p class="text-muted small">Share observations and insights</p>
+            <h5 class="mb-2">Community Insights</h5>
+            <p class="text-muted small">Share observations and local weather insights with the community</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="feature-item text-center p-3">
             <div class="feature-badge mb-2">📈</div>
-            <h5 class="mb-2">Historical Data</h5>
-            <p class="text-muted small">Access past weather readings</p>
+            <h5 class="mb-2">Historical Archive</h5>
+            <p class="text-muted small">Access years of weather data for research and analysis</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="feature-item text-center p-3">
             <div class="feature-badge mb-2">🗺️</div>
             <h5 class="mb-2">Interactive Maps</h5>
-            <p class="text-muted small">Visualize station locations</p>
+            <p class="text-muted small">Visualize weather patterns with integrated mapping technology</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Use Cases Section -->
+    <div class="use-cases-section mb-5">
+      <h4 class="text-center mb-4 fs-3 fw-bold">Perfect for Every Weather Need</h4>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="use-case-card">
+            <div class="use-case-icon">🌾</div>
+            <h5>Agriculture & Farming</h5>
+            <p class="text-muted small">
+              Monitor crop conditions, irrigation needs, and seasonal patterns 
+              to optimize agricultural productivity and planning.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="use-case-card">
+            <div class="use-case-icon">🏗️</div>
+            <h5>Construction & Engineering</h5>
+            <p class="text-muted small">
+              Plan construction activities, ensure worker safety, and manage 
+              weather-dependent operations with reliable forecasting.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="use-case-card">
+            <div class="use-case-icon">🎓</div>
+            <h5>Research & Education</h5>
+            <p class="text-muted small">
+              Access comprehensive weather datasets for climate research, 
+              academic studies, and educational meteorology programs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section text-center">
+      <h3 class="fw-bold mb-3">Ready to Start Monitoring?</h3>
+      <p class="text-light mb-4">
+        Join thousands of users who trust WeatherScope Pro for accurate, real-time weather intelligence.
+      </p>
+      <div class="cta-buttons">
+        <a routerLink="/register" class="btn btn-light btn-lg me-3 px-5">
+          Get Started Free
+        </a>
+        <a routerLink="/weather" class="btn btn-outline-light btn-lg px-5">
+          Explore Demo
+        </a>
       </div>
     </div>
   </div>

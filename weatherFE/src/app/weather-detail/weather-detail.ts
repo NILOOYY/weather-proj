@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { WeatherService } from '../services/weather.service';
+import { AuthService } from '../services/auth.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
@@ -33,7 +34,8 @@ export class WeatherDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private weatherAPI: WeatherService
+    private weatherAPI: WeatherService,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -96,6 +98,38 @@ export class WeatherDetailComponent implements OnInit {
       },
       error: (err) => console.error("Error posting comment:", err)
     });
+  }
+
+  // ⭐ DELETE COMMENT
+  deleteComment(commentId: string) {
+    if (confirm('Are you sure you want to delete this comment?')) {
+      this.weatherAPI.deleteComment(this.id!, commentId).subscribe({
+        next: () => {
+          console.log('Comment deleted successfully');
+          this.loadComments();
+        },
+        error: (err) => console.error("Error deleting comment:", err)
+      });
+    }
+  }
+
+  // ⭐ EDIT COMMENT (Simple implementation)
+  editComment(comment: any) {
+    const newCommentText = prompt('Edit your comment:', comment.comment);
+    if (newCommentText && newCommentText.trim() !== comment.comment) {
+      const payload = {
+        comment: newCommentText.trim(),
+        rating: comment.rating
+      };
+
+      this.weatherAPI.updateComment(this.id!, comment._id, payload).subscribe({
+        next: () => {
+          console.log('Comment updated successfully');
+          this.loadComments();
+        },
+        error: (err) => console.error("Error updating comment:", err)
+      });
+    }
   }
 }
 

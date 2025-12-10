@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,5 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './app.css',
 })
 export class App {}
+
 
 

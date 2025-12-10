@@ -79,3 +79,246 @@
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Hero Stats */
+.hero-stats {
+  margin: 2rem 0;
+}
+
+.stat-pill {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.stat-pill:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Feature Highlights */
+.feature-highlights {
+  text-align: left;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #e9ecef;
+}
+
+/* Technology Section */
+.tech-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tech-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(10px);
+}
+
+.tech-icon {
+  font-size: 2rem;
+  width: 60px;
+  text-align: center;
+}
+
+.tech-item strong {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.tech-item small {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Tech Visual */
+.tech-visual {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-elements {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.floating-element {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatAround 8s ease-in-out infinite;
+}
+
+.floating-element:nth-child(1) {
+  top: 0;
+  left: 50%;
+  animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+  top: 25%;
+  right: 0;
+  animation-delay: 1.6s;
+}
+
+.floating-element:nth-child(3) {
+  bottom: 25%;
+  right: 0;
+  animation-delay: 3.2s;
+}
+
+.floating-element:nth-child(4) {
+  bottom: 0;
+  left: 50%;
+  animation-delay: 4.8s;
+}
+
+.floating-element:nth-child(5) {
+  top: 25%;
+  left: 0;
+  animation-delay: 6.4s;
+}
+
+@keyframes floatAround {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+}
+
+/* Use Cases Section */
+.use-cases-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(5px);
+}
+
+.use-case-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.use-case-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.use-case-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.use-case-card h5 {
+  color: white;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.use-case-card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* Call to Action */
+.cta-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-section h3 {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.cta-buttons {
+  margin-top: 2rem;
+}
+
+.btn-outline-light:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-pill {
+    margin-bottom: 1rem;
+    width: 200px;
+  }
+  
+  .tech-section,
+  .use-cases-section,
+  .cta-section {
+    padding: 2rem 1rem;
+  }
+  
+  .tech-visual {
+    height: 200px;
+    margin-top: 2rem;
+  }
+  
+  .floating-elements {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .cta-buttons .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
